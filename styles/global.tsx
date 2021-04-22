@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap');
 
   *{
     margin: 0px;
@@ -63,13 +63,13 @@ export default createGlobalStyle`
     transition: 0.5s;
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 400;
     color: ${props => props.theme.colors.text};
     background: ${props => props.theme.colors.bg};
     input, select, textarea {
       font-family: 'Roboto', sans-serif;
       font-size: 16px;
-      font-weight: 300;
+      font-weight: 400;
       border-radius: 30px;
       border: none;
       color: ${props => props.theme.colors.dark};
@@ -117,38 +117,4 @@ export const AppBox = styled.div`
   max-width: 2560px;
   margin: 0px auto;
   overflow: hidden;
-`;
-
-export const SwitchTheme = styled.button`
-  position: fixed;
-  z-index: 20;
-  top: 50%;
-  right: -40px;
-  transform: translate(0px, -50%);
-  padding: 8px;
-  transition: 0.5s;
-  border: none;
-  cursor: pointer;
-  text-align: center;
-  color: ${props => props.theme.colors.light};
-  background: ${props => props.theme.colors.primary};
-  &:hover {
-    right: 0px;
-  }
-  &:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: -7px;
-    transform: translate(0px, -50%);
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 10px;
-    width: 0;
-    height: 0;
-
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-right: 8px solid ${props => props.theme.colors.primary};
-  }
 `;

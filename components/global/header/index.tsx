@@ -72,6 +72,7 @@ const header = () => {
               checkedIcon={<FaMoon />}
               uncheckedIcon={<FaSun />}
               onColor="#5a55f2"
+              className="switch-theme"
             />
           </Menu>
 

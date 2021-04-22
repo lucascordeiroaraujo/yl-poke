@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { AppProps } from 'next/app';
 
 import Head from 'next/head';
 
-import GlobalStyles, { AppBox, SwitchTheme } from '~/styles/global';
+import Router from 'next/router';
 
 import 'react-app-polyfill/ie9';
 
-import NProgress from 'nprogress';
+import GlobalStyles, { AppBox } from '~/styles/global';
 
-import Router from 'next/router';
+import NProgress from 'nprogress';
 
 import { ThemeProvider } from 'styled-components';
 
-import lightTheme from '~/styles/themes/light';
+// import lightTheme from '~/styles/themes/light';
 
 import darkTheme from '~/styles/themes/dark';
 
@@ -31,32 +31,6 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const [theme, setTheme] = useState('dark');
-
-  const handleToggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-
-    localStorage.setItem('@yaloFront:theme', newTheme);
-
-    setTheme(newTheme);
-  };
-
-  useEffect(function () {
-    const selectedTheme = localStorage.getItem('@yaloFront:theme');
-
-    if (selectedTheme) {
-      setTheme(selectedTheme);
-    }
-  }, []);
-
-  const themeLabel = () => {
-    if (theme === 'dark') {
-      return 'Tema<br/> Claro';
-    } else {
-      return 'Tema<br/> Escuro';
-    }
-  };
-
   return (
     <>
       <Head>
@@ -169,20 +143,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
 
-      <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
+      <ThemeProvider theme={darkTheme}>
         <>
           <GlobalStyles />
 
           <AppBox>
             <AppProvider>
-              <SwitchTheme
-                onClick={handleToggleTheme}
-                dangerouslySetInnerHTML={{ __html: themeLabel() }}
-              />
-
               <Header />
 
-              <Component {...pageProps} theme={theme} />
+              <Component {...pageProps} theme={'dark'} />
             </AppProvider>
           </AppBox>
         </>

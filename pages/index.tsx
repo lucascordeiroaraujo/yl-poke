@@ -4,24 +4,26 @@ import { GetStaticPropsResult } from 'next';
 
 import { useRouter } from 'next/router';
 
-import { IAppInfoState, useAppInfo, getAppInfoData } from '~/hooks/app/app';
+import { usePokeList, getPokeListData } from '~/hooks/home/poke-list';
+
+import { IPokeListState } from '~/hooks/home/poke-list/types';
 
 import Loader from '~/components/global/loader';
 
 import HomePage from '~/components/page/home';
 
 interface IHomeProps {
-  appInfo: IAppInfoState;
+  pokeList: IPokeListState;
 }
 
-export default function IndexPage({ appInfo }: IHomeProps) {
+export default function IndexPage({ pokeList }: IHomeProps) {
   const { isFallback } = useRouter();
 
-  const { handleSetAppInfo } = useAppInfo();
+  const { handleSetPokeList } = usePokeList();
 
   useEffect(() => {
-    handleSetAppInfo(appInfo);
-  }, [handleSetAppInfo, appInfo]);
+    handleSetPokeList(pokeList);
+  }, [handleSetPokeList, pokeList]);
 
   if (isFallback) {
     return <Loader />;
@@ -33,11 +35,11 @@ export default function IndexPage({ appInfo }: IHomeProps) {
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<IHomeProps>
 > {
-  const appInfo = await getAppInfoData();
+  const pokeList = await getPokeListData();
 
   return {
     props: {
-      appInfo,
+      pokeList,
     },
     revalidate: 10,
   };

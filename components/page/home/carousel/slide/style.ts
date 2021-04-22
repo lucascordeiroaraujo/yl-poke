@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export default styled.div`
   width: 100%;
@@ -35,7 +35,11 @@ export const SliderItemInfo = styled.div`
     font-size: 40px;
     font-weight: 900;
     color: ${props => props.theme.colors.text};
-    text-shadow: 2px 2px ${props => props.theme.colors.primary};
+    ${props =>
+      props.theme.name === 'dark' &&
+      css`
+        text-shadow: 2px 2px ${props => props.theme.colors.primary};
+      `}
   }
   .types-container {
     width: 100%;
@@ -70,7 +74,11 @@ export const SliderItemInfo = styled.div`
         margin-right: 10px;
         font-weight: 900;
         color: ${props => props.theme.colors.secondary};
-        text-shadow: 2px 2px ${props => props.theme.colors.primary};
+        ${props =>
+          props.theme.name === 'dark' &&
+          css`
+            text-shadow: 2px 2px ${props => props.theme.colors.primary};
+          `}
       }
       span {
         font-size: 14px;

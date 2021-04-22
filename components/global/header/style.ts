@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { shade } from 'polished';
 
@@ -6,8 +6,11 @@ export default styled.header`
   width: 100%;
   padding: 20px 0px;
   background: #32335a;
-  background: -webkit-linear-gradient(top, #32335a 0%, #333333 100%);
-  background: linear-gradient(to bottom, #32335a 0%, #333333 100%);
+  ${props =>
+    props.theme.name === 'dark' &&
+    css`
+      background: linear-gradient(to bottom, #32335a 0%, #333333 100%);
+    `}
   .header-container {
     display: flex;
     justify-content: space-between;
@@ -43,12 +46,15 @@ export const Menu = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  .react-switch-bg div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    svg {
-      font-size: 14px;
+  .switch-theme {
+    display: none !important;
+    .react-switch-bg div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg {
+        font-size: 14px;
+      }
     }
   }
   ul {

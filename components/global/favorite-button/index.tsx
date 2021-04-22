@@ -5,7 +5,7 @@ import FavoriteButton from './style';
 import { FaStar } from 'react-icons/fa';
 
 interface IFavButtonProps {
-  id: string;
+  id: number;
 }
 
 const favoriteButton = ({ id }: IFavButtonProps) => {

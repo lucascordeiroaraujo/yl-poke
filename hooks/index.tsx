@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import SiteProvider from './app';
+import SiteProvider from './home';
 
 interface IProps {
   children: ReactNode;

@@ -6,11 +6,9 @@ import { useRouter } from 'next/router';
 
 import { IAppInfoState, useAppInfo, getAppInfoData } from '~/hooks/app/app';
 
-import { Container } from '~/styles/global';
-
 import Loader from '~/components/global/loader';
 
-import PokeList from '~/components/page/home/poke-list';
+import HomePage from '~/components/page/home';
 
 interface IHomeProps {
   appInfo: IAppInfoState;
@@ -29,11 +27,7 @@ export default function IndexPage({ appInfo }: IHomeProps) {
     return <Loader />;
   }
 
-  return (
-    <Container>
-      <PokeList />
-    </Container>
-  );
+  return <HomePage />;
 }
 
 export async function getStaticProps(): Promise<

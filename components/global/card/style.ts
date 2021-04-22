@@ -63,5 +63,22 @@ export const CardInfo = styled.div`
     font-size: 26px;
     font-weight: 900;
     color: ${props => props.theme.colors.light};
+    text-shadow: 2px 2px ${props => props.theme.colors.primary};
+  }
+  .card-types {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    span {
+      padding: 5px 15px;
+      color: ${props => props.theme.colors.light};
+      font-size: 12px;
+      border-radius: 5px;
+      margin-right: 10px;
+      background: ${props => props.theme.colors.primary};
+    }
   }
 `;

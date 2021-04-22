@@ -5,9 +5,9 @@ import { shade } from 'polished';
 export default styled.header`
   width: 100%;
   padding: 20px 0px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid ${props => props.theme.colors.primary};
-  background: ${props => props.theme.colors.dark};
+  background: #32335a;
+  background: -webkit-linear-gradient(top, #32335a 0%, #333333 100%);
+  background: linear-gradient(to bottom, #32335a 0%, #333333 100%);
   .header-container {
     display: flex;
     justify-content: space-between;
@@ -40,6 +40,17 @@ export default styled.header`
 export const Menu = styled.nav`
   width: 100%;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .react-switch-bg div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      font-size: 14px;
+    }
+  }
   ul {
     list-style: none;
     display: flex;

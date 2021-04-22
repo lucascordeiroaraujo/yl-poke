@@ -31,10 +31,10 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
 
   const handleToggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
 
     localStorage.setItem('@yaloFront:theme', newTheme);
 
@@ -50,10 +50,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   const themeLabel = () => {
-    if (theme === 'light') {
-      return 'Tema<br/> Escuro';
-    } else {
+    if (theme === 'dark') {
       return 'Tema<br/> Claro';
+    } else {
+      return 'Tema<br/> Escuro';
     }
   };
 
@@ -61,7 +61,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>
-          Yalo: Conversational Commerce in WhatsApp and Facebook Messenger
+          PokéApi By Yalo: Conversational Commerce in WhatsApp and Facebook
+          Messenger
         </title>
 
         <link
@@ -154,9 +155,21 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta name="msapplication-TileColor" content="#5A55F2" />
 
         <meta name="theme-color" content="#5A55F2" />
+
+        <link
+          rel="stylesheet"
+          type="text/css"
+          charSet="UTF-8"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+        />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+        />
       </Head>
 
-      <ThemeProvider theme={theme == 'light' ? lightTheme : darkTheme}>
+      <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
         <>
           <GlobalStyles />
 

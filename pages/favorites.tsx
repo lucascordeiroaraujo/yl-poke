@@ -52,7 +52,7 @@ IndexPage.getInitialProps = async ({ req }: NextPageContext) => {
 
   const favorites = await getFavoritesData(data[localStorageKey]);
 
-  const pokeList = await getPokeListData();
+  const pokeList = await getPokeListData({ limit: 4 });
 
   return {
     favorites,

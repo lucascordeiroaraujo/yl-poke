@@ -15,9 +15,9 @@ const PokeListContext = createContext<IPokeListContextData>(
   {} as IPokeListContextData,
 );
 
-export const getPokeListData = async () => {
+export const getPokeListData = async ({ limit }: { limit: number }) => {
   return api
-    .get<IPokeListRequest>(`/pokemon`)
+    .get<IPokeListRequest>(`/pokemon?limit=${limit}`)
     .then(async response => {
       const pokeList = response.data.results;
 

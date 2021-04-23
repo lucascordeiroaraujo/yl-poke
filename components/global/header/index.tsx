@@ -13,6 +13,8 @@ import { FaHome, FaStar, FaMoon, FaSun } from 'react-icons/fa';
 import Switch from 'react-switch';
 
 const header = () => {
+  const [search, setSearch] = useState('');
+
   const [checked, setChecked] = useState(false);
 
   const handleChange = (): void => {
@@ -23,6 +25,12 @@ const header = () => {
 
   const hasActiveMenuItem = useCallback((menuSlug: string): boolean => {
     return router.pathname === menuSlug;
+  }, []);
+
+  const handleSubmitForm = useCallback(e => {
+    e.preventDefault();
+
+    router.push(`/search/${search}`);
   }, []);
 
   return (
@@ -76,11 +84,13 @@ const header = () => {
             />
           </Menu>
 
-          <SearchForm>
+          <SearchForm method="post" onSubmit={handleSubmitForm}>
             <input
               type="text"
               placeholder="Enter Pokemon name"
               className="search-field"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
             />
 
             <div className="search-button">

@@ -4,13 +4,17 @@ import HomeProvider from './home';
 
 import { FavoritesProvider } from './favorites';
 
+import { SearchProvider } from './search';
+
 interface IProps {
   children: ReactNode;
 }
 
 const AppProvider = ({ children }: IProps) => (
   <HomeProvider>
-    <FavoritesProvider>{children}</FavoritesProvider>
+    <FavoritesProvider>
+      <SearchProvider>{children}</SearchProvider>
+    </FavoritesProvider>
   </HomeProvider>
 );
 

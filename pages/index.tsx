@@ -35,7 +35,7 @@ export default function IndexPage({ pokeList }: IHomeProps) {
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<IHomeProps>
 > {
-  const pokeList = await getPokeListData();
+  const pokeList = await getPokeListData({ limit: 20 });
 
   return {
     props: {

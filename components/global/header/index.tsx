@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, FormEvent } from 'react';
 
 import { useRouter } from 'next/router';
 
@@ -27,11 +27,11 @@ const header = () => {
     return router.pathname === menuSlug;
   }, []);
 
-  const handleSubmitForm = useCallback(e => {
-    e.preventDefault();
+  const handleSubmitForm = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     router.push(`/search/${search}`);
-  }, []);
+  };
 
   return (
     <Header>

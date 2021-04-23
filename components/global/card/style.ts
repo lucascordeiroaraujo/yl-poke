@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components';
 
+import { IgenerateBgType } from '~/utils/poke-list';
+
 interface IProps {
-  bgType: '1' | '2' | '3' | '4';
+  bgType: IgenerateBgType;
 }
 
 export default styled.article`
@@ -39,25 +41,50 @@ export const CardImage = styled.div<IProps>`
     props.bgType === '1' &&
     css`
       background: #b06ab3;
-      background: linear-gradient(to bottom, #b06ab3, #32335a);
+      background: ${props =>
+        `linear-gradient(to bottom, #b06ab3, ${props.theme.colors.dark})`};
     `}
   ${props =>
     props.bgType === '2' &&
     css`
       background: #16bffd;
-      background: linear-gradient(to bottom, #16bffd, #32335a);
+      background: ${props =>
+        `linear-gradient(to bottom, #16bffd, ${props.theme.colors.dark})`};
     `}
   ${props =>
     props.bgType === '3' &&
     css`
       background: #f56217;
-      background: linear-gradient(to bottom, #f56217, #32335a);
+      background: ${props =>
+        `linear-gradient(to bottom, #f56217, ${props.theme.colors.dark})`};
     `}
-    ${props =>
+  ${props =>
     props.bgType === '4' &&
     css`
       background: #89253e;
-      background: linear-gradient(to bottom, #89253e, #32335a);
+      background: ${props =>
+        `linear-gradient(to bottom, #89253e, ${props.theme.colors.dark})`};
+    `}
+  ${props =>
+    props.bgType === '5' &&
+    css`
+      background: #536976;
+      background: ${props =>
+        `linear-gradient(to bottom, #536976, ${props.theme.colors.dark})`};
+    `}
+  ${props =>
+    props.bgType === '6' &&
+    css`
+      background: #94716b;
+      background: ${props =>
+        `linear-gradient(to bottom, #94716b, ${props.theme.colors.dark})`};
+    `}
+  ${props =>
+    props.bgType === '7' &&
+    css`
+      background: #2c3e50;
+      background: ${props =>
+        `linear-gradient(to bottom, #2c3e50, ${props.theme.colors.dark})`};
     `}
 `;
 

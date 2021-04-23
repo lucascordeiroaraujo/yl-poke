@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { IPokeInfoRequest } from '~/utils/poke-list';
+import { IgenerateBgType, IPokeInfoRequest } from '~/utils/poke-list';
 
 import { statName } from '~/utils/poke-list';
 
@@ -11,7 +11,7 @@ import Link from 'next/link';
 import FavoriteButton from '~/components/global/favorite-button';
 
 interface ICardProps extends IPokeInfoRequest {
-  imageBg: '1' | '2' | '3' | '4';
+  imageBg: IgenerateBgType;
 }
 
 const card = ({ id, imageBg, sprites, name, types, stats }: ICardProps) => {

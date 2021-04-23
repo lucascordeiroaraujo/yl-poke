@@ -2,8 +2,6 @@ import React, { useCallback, useState } from 'react';
 
 import { useRouter } from 'next/router';
 
-import Link from 'next/link';
-
 import Header, { Menu, MenuItem, SearchForm } from './style';
 
 import { Container } from '~/styles/global';
@@ -31,46 +29,40 @@ const header = () => {
     <Header>
       <Container className="header-container">
         <div className="header-logo-container">
-          <Link href="/">
-            <a title="Go to home page">
-              <img
-                src={require('~/public/images/pokeapi.svg')}
-                alt="Logo Poke API"
-                title="Poke API"
-                width="257"
-                height="103"
-                className="pokeapi"
-              />
+          <a href="/" title="Go to home page">
+            <img
+              src={require('~/public/images/pokeapi.svg')}
+              alt="Logo Poke API"
+              title="Poke API"
+              width="257"
+              height="103"
+              className="pokeapi"
+            />
 
-              <img
-                src={require('~/public/images/yalo-chat.svg')}
-                alt="Yalo Chat Logo"
-                title="Yalo: Conversational Commerce in WhatsApp and Facebook Messenger"
-                width="53"
-                height="20"
-                className="yalo"
-              />
-            </a>
-          </Link>
+            <img
+              src={require('~/public/images/yalo-chat.svg')}
+              alt="Yalo Chat Logo"
+              title="Yalo: Conversational Commerce in WhatsApp and Facebook Messenger"
+              width="53"
+              height="20"
+              className="yalo"
+            />
+          </a>
         </div>
 
         <div className="header-actions-continaer">
           <Menu>
             <ul>
               <MenuItem activeMenuItem={hasActiveMenuItem('/')}>
-                <Link href="/">
-                  <a title="Go to home page">
-                    <FaHome /> Home
-                  </a>
-                </Link>
+                <a href="/" title="Go to home page">
+                  <FaHome /> Home
+                </a>
               </MenuItem>
 
               <MenuItem activeMenuItem={hasActiveMenuItem('/favorites')}>
-                <Link href="/favorites">
-                  <a title="Your favorite pokemons">
-                    <FaStar /> Favorites
-                  </a>
-                </Link>
+                <a href="/favorites" title="Your favorite pokemons">
+                  <FaStar /> Favorites
+                </a>
               </MenuItem>
             </ul>
 

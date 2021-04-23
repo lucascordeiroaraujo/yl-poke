@@ -55,7 +55,7 @@ export const getPokeInfo = async (pokeUrl: string) => {
 };
 
 export const generateBgType = () => {
-  return (Math.floor(Math.random() * 4) + 1).toString();
+  return (Math.floor(Math.random() * 7) + 1).toString();
 };
 
-export type IgenerateBgType = '1' | '2' | '3' | '4';
+export type IgenerateBgType = '1' | '2' | '3' | '4' | '5' | '6' | '7';

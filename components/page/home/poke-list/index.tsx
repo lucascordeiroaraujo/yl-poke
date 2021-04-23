@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { shuffleArray } from '~/utils';
+
 import { generateBgType, IgenerateBgType } from '~/utils/poke-list';
 
 import { usePokeList } from '~/hooks/home/poke-list';
@@ -10,12 +12,24 @@ import PokeList from './style';
 
 import Card from '~/components/global/card';
 
-const pokeList = () => {
+interface IPokeListProps {
+  start?: number;
+  end?: number;
+  shuffle?: boolean;
+}
+
+const pokeList = ({ start = 4, end = 20, shuffle = false }: IPokeListProps) => {
   const { pokeList } = usePokeList();
 
   if (!pokeList || Object.keys(pokeList).length === 0) return null;
 
-  const pokemons = pokeList.pokemons.slice(4, 20);
+  let pokemons = pokeList.pokemons;
+
+  if (shuffle) {
+    pokemons = shuffleArray(pokemons);
+  }
+
+  pokemons = pokemons.slice(start, end);
 
   return (
     <Container>

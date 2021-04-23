@@ -10,25 +10,29 @@ import Favorites, { PokeList } from './style';
 
 import Card from '~/components/global/card';
 
+import NoResults from './no-results';
+
 const favorites = () => {
   const { favoritesData } = useFavorites();
-
-  if (Object.keys(favoritesData).length === 0) return null;
 
   return (
     <Container>
       <Favorites>
         <h1>Your Favorites</h1>
 
-        <PokeList>
-          {favoritesData.map(pokemon => (
-            <Card
-              key={pokemon.id}
-              imageBg={generateBgType() as IgenerateBgType}
-              {...pokemon}
-            />
-          ))}
-        </PokeList>
+        {Object.keys(favoritesData).length > 0 ? (
+          <PokeList>
+            {favoritesData.map(pokemon => (
+              <Card
+                key={pokemon.id}
+                imageBg={generateBgType() as IgenerateBgType}
+                {...pokemon}
+              />
+            ))}
+          </PokeList>
+        ) : (
+          <NoResults />
+        )}
       </Favorites>
     </Container>
   );

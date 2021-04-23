@@ -10,7 +10,7 @@ import {
 
 import { getPokeInfo, IPokeInfoRequest } from '~/utils/poke-list';
 
-const localStorageKey = '@ylPoke:favorites';
+export const localStorageKey = '@ylPoke:favorites';
 
 const FavoritesContext = createContext<IFavoritesContextData>(
   {} as IFavoritesContextData,

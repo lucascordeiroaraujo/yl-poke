@@ -4,9 +4,17 @@ import { NextPageContext } from 'next';
 
 import { useRouter } from 'next/router';
 
-import { useFavorites, getFavoritesData } from '~/hooks/favorites';
+import {
+  useFavorites,
+  getFavoritesData,
+  localStorageKey,
+} from '~/hooks/favorites';
 
 import { IPokeInfoRequest } from '~/utils/poke-list';
+
+import { usePokeList, getPokeListData } from '~/hooks/home/poke-list';
+
+import { IPokeListState } from '~/hooks/home/poke-list/types';
 
 import { parseCookies } from '~/utils/cookies';
 
@@ -15,17 +23,22 @@ import Loader from '~/components/global/loader';
 import FavoritesPage from '~/components/page/favorites';
 
 interface IHomeProps {
-  pokeList: IPokeInfoRequest[];
+  favorites: IPokeInfoRequest[];
+  pokeList: IPokeListState;
 }
 
-export default function IndexPage({ pokeList }: IHomeProps) {
+export default function IndexPage({ favorites, pokeList }: IHomeProps) {
   const { isFallback } = useRouter();
 
   const { handleSetFavoritesData } = useFavorites();
 
+  const { handleSetPokeList } = usePokeList();
+
   useEffect(() => {
-    handleSetFavoritesData(pokeList);
-  }, [handleSetFavoritesData, pokeList]);
+    handleSetFavoritesData(favorites);
+
+    handleSetPokeList(pokeList);
+  }, [handleSetFavoritesData, favorites, handleSetPokeList, pokeList]);
 
   if (isFallback) {
     return <Loader />;
@@ -37,9 +50,12 @@ export default function IndexPage({ pokeList }: IHomeProps) {
 IndexPage.getInitialProps = async ({ req }: NextPageContext) => {
   const data = parseCookies(req);
 
-  const pokeList = await getFavoritesData(data['@ylPoke:favorites']);
+  const favorites = await getFavoritesData(data[localStorageKey]);
+
+  const pokeList = await getPokeListData();
 
   return {
+    favorites,
     pokeList,
   };
 };

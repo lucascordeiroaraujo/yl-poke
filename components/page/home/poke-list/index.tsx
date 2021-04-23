@@ -1,4 +1,6 @@
-import React, { useCallback } from 'react';
+import React from 'react';
+
+import { generateBgType, IgenerateBgType } from '~/utils/poke-list';
 
 import { usePokeList } from '~/hooks/home/poke-list';
 
@@ -14,12 +16,6 @@ const pokeList = () => {
   if (Object.keys(pokeList).length === 0) return null;
 
   const pokemons = pokeList.pokemons.slice(4, 20);
-
-  const generateBgType = useCallback(() => {
-    return (Math.floor(Math.random() * 4) + 1).toString();
-  }, []);
-
-  type IgenerateBgType = '1' | '2' | '3' | '4';
 
   return (
     <Container>

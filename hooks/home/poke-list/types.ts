@@ -1,34 +1,10 @@
 import { ReactNode } from 'react';
 
+import { IPokeInfoRequest } from '~/utils/poke-list';
+
 export interface IPokeListContextData {
   pokeList: IPokeListState;
   handleSetPokeList(currentPost: IPokeListState): void;
-}
-
-export interface IPokeInfoRequest {
-  id: number;
-  name: string;
-  sprites: {
-    other: {
-      dream_world: {
-        front_default: string;
-      };
-    };
-  };
-  stats: Array<{
-    base_stat: number;
-    stat: {
-      name: string;
-      url: string;
-    };
-  }>;
-  types: Array<{
-    slot: number;
-    type: {
-      name: string;
-      url: string;
-    };
-  }>;
 }
 
 export interface IPokeListState {

@@ -2,7 +2,6 @@ import React, { createContext, useCallback, useState, useContext } from 'react';
 
 import {
   IPokeListContextData,
-  IPokeInfoRequest,
   IPokeListState,
   IPokeListProviderProps,
   IPokeListRequest,
@@ -10,28 +9,11 @@ import {
 
 import api from '~/services/api';
 
+import { getPokeInfo } from '~/utils/poke-list';
+
 const PokeListContext = createContext<IPokeListContextData>(
   {} as IPokeListContextData,
 );
-
-const getPokeInfo = async (pokeUrl: string) => {
-  return api
-    .get<IPokeInfoRequest>(pokeUrl)
-    .then(response => {
-      const { id, name, sprites, stats, types } = response.data;
-
-      return {
-        id,
-        name,
-        sprites,
-        stats,
-        types,
-      };
-    })
-    .catch(() => {
-      return null;
-    });
-};
 
 export const getPokeListData = async () => {
   return api
@@ -44,9 +26,7 @@ export const getPokeListData = async () => {
       for (let i = 0; i < pokeList.length; i++) {
         const pokemon = await getPokeInfo(pokeList[i].url);
 
-        if (pokemon) {
-          pokemons.push(pokemon);
-        }
+        if (pokemon) pokemons.push(pokemon);
       }
 
       return {

@@ -18,6 +18,8 @@ import { ThemeProvider } from 'styled-components';
 
 import darkTheme from '~/styles/themes/dark';
 
+import { CookiesProvider } from 'react-cookie';
+
 import AppProvider from '~/hooks';
 
 import Header from '~/components/global/header';
@@ -136,11 +138,19 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           charSet="UTF-8"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
         />
+
         <link
           rel="stylesheet"
           type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
+
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap"
+          rel="stylesheet"
+        ></link>
       </Head>
 
       <ThemeProvider theme={darkTheme}>
@@ -148,11 +158,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           <GlobalStyles />
 
           <AppBox>
-            <AppProvider>
-              <Header />
+            <CookiesProvider>
+              <AppProvider>
+                <Header />
 
-              <Component {...pageProps} theme={'dark'} />
-            </AppProvider>
+                <Component {...pageProps} theme={'dark'} />
+              </AppProvider>
+            </CookiesProvider>
           </AppBox>
         </>
       </ThemeProvider>

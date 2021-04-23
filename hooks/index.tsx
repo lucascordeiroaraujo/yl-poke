@@ -1,13 +1,17 @@
 import React, { ReactNode } from 'react';
 
-import SiteProvider from './home';
+import HomeProvider from './home';
+
+import { FavoritesProvider } from './favorites';
 
 interface IProps {
   children: ReactNode;
 }
 
 const AppProvider = ({ children }: IProps) => (
-  <SiteProvider>{children}</SiteProvider>
+  <HomeProvider>
+    <FavoritesProvider>{children}</FavoritesProvider>
+  </HomeProvider>
 );
 
 export default AppProvider;

@@ -62,24 +62,43 @@ export const Menu = styled.nav`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    li {
-      a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: ${props => props.theme.colors.light};
-        padding: 10px;
-        transition: 0.5s;
-        svg {
-          margin-right: 10px;
-          position: relative;
-          top: -1px;
-        }
-      }
-      &:hover a {
-        color: ${props => shade(0.2, props.theme.colors.light)};
-      }
+  }
+`;
+
+interface IMenuItemProps {
+  activeMenuItem: boolean;
+}
+
+export const MenuItem = styled.li<IMenuItemProps>`
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${props => props.theme.colors.light};
+    padding: 10px;
+    transition: 0.5s;
+    position: relative;
+    svg {
+      margin-right: 10px;
+      position: relative;
+      top: -1px;
     }
+    ${props =>
+      props.activeMenuItem &&
+      css`
+        &:before {
+          content: '';
+          position: absolute;
+          bottom: 5px;
+          left: 10px;
+          width: calc(100% - 20px);
+          height: 2px;
+          background: ${props => props.theme.colors.primary};
+        }
+      `}
+  }
+  &:hover a {
+    color: ${props => shade(0.2, props.theme.colors.light)};
   }
 `;
 

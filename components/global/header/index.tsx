@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
-import Header, { Menu, SearchForm } from './style';
+import { useRouter } from 'next/router';
+
+import Link from 'next/link';
+
+import Header, { Menu, MenuItem, SearchForm } from './style';
 
 import { Container } from '~/styles/global';
 
 import { FaSearch } from 'react-icons/fa';
-
-import Link from 'next/link';
 
 import { FaHome, FaStar, FaMoon, FaSun } from 'react-icons/fa';
 
@@ -15,9 +17,15 @@ import Switch from 'react-switch';
 const header = () => {
   const [checked, setChecked] = useState(false);
 
-  const handleChange = () => {
+  const handleChange = (): void => {
     setChecked(!checked);
   };
+
+  const router = useRouter();
+
+  const hasActiveMenuItem = useCallback((menuSlug: string): boolean => {
+    return router.pathname === menuSlug;
+  }, []);
 
   return (
     <Header>
@@ -49,21 +57,21 @@ const header = () => {
         <div className="header-actions-continaer">
           <Menu>
             <ul>
-              <li>
+              <MenuItem activeMenuItem={hasActiveMenuItem('/')}>
                 <Link href="/">
                   <a title="Go to home page">
                     <FaHome /> Home
                   </a>
                 </Link>
-              </li>
+              </MenuItem>
 
-              <li>
-                <Link href="/">
+              <MenuItem activeMenuItem={hasActiveMenuItem('/favorites')}>
+                <Link href="/favorites">
                   <a title="Your favorite pokemons">
                     <FaStar /> Favorites
                   </a>
                 </Link>
-              </li>
+              </MenuItem>
             </ul>
 
             <Switch

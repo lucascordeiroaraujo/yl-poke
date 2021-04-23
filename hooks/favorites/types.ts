@@ -2,16 +2,16 @@ import { ReactNode } from 'react';
 
 import { IPokeInfoRequest } from '~/utils/poke-list';
 
+export interface IFavoriteState {
+  id: number;
+}
+
 export interface IFavoritesContextData {
-  favoritesStorage: any;
-  handleToggleFavoritesStorage(pokemonId: number): void;
+  getFavoritesStorage: any;
+  handleToggleFavoritesStorage(pokemonId: number): 'removed' | 'add';
 
   favoritesData: IPokeInfoRequest[];
   handleSetFavoritesData(pokemons: IPokeInfoRequest[]): void;
-}
-
-export interface IFavoriteState {
-  id: number;
 }
 
 export interface IFavoritesProviderProps {

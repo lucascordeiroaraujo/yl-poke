@@ -13,7 +13,7 @@ import Card from '~/components/global/card';
 const pokeList = () => {
   const { pokeList } = usePokeList();
 
-  if (Object.keys(pokeList).length === 0) return null;
+  if (!pokeList || Object.keys(pokeList).length === 0) return null;
 
   const pokemons = pokeList.pokemons.slice(4, 20);
 

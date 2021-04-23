@@ -37,8 +37,6 @@ export default function IndexPage({ pokeList }: IHomeProps) {
 IndexPage.getInitialProps = async ({ req }: NextPageContext) => {
   const data = parseCookies(req);
 
-  console.log(data['@ylPoke:favorites']);
-
   const pokeList = await getFavoritesData(data['@ylPoke:favorites']);
 
   return {

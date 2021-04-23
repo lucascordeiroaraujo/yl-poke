@@ -150,7 +150,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap"
           rel="stylesheet"
-        ></link>
+        />
+
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdn.jsdelivr.net/npm/react-toastify@7.0.3/dist/ReactToastify.css"
+        />
       </Head>
 
       <ThemeProvider theme={darkTheme}>

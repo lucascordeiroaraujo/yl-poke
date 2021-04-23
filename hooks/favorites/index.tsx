@@ -43,6 +43,8 @@ export const FavoritesProvider = ({ children }: IFavoritesProviderProps) => {
     return [] as IPokeInfoRequest[];
   });
 
+  const twoHours = 3600 * 2;
+
   const findById = (pokemonId: number) => {
     if (favoritesStorage[localStorageKey]) {
       const favorites = favoritesStorage[localStorageKey] as IFavoriteState[];
@@ -62,7 +64,7 @@ export const FavoritesProvider = ({ children }: IFavoritesProviderProps) => {
 
     setFavoritesStorage(localStorageKey, JSON.stringify(favoritesWithOutId), {
       path: '/',
-      maxAge: 3600,
+      maxAge: twoHours,
       sameSite: true,
     });
   };
@@ -78,16 +80,26 @@ export const FavoritesProvider = ({ children }: IFavoritesProviderProps) => {
 
     setFavoritesStorage(localStorageKey, JSON.stringify(userFavorites), {
       path: '/',
-      maxAge: 3600,
+      maxAge: twoHours,
       sameSite: true,
     });
   };
 
-  const handleToggleFavoritesStorage = (pokemonId: number) => {
+  const getFavoritesStorage = () => {
+    return favoritesStorage[localStorageKey] || [];
+  };
+
+  const handleToggleFavoritesStorage = (
+    pokemonId: number,
+  ): 'removed' | 'add' => {
     if (findById(pokemonId)) {
       removeFavorite(pokemonId);
+
+      return 'removed';
     } else {
       addToFavorite(pokemonId);
+
+      return 'add';
     }
   };
 
@@ -98,7 +110,7 @@ export const FavoritesProvider = ({ children }: IFavoritesProviderProps) => {
   return (
     <FavoritesContext.Provider
       value={{
-        favoritesStorage,
+        getFavoritesStorage,
         favoritesData,
         handleToggleFavoritesStorage,
         handleSetFavoritesData,

@@ -13,7 +13,7 @@ import SlideItem from './slide';
 const carousel = () => {
   const { pokeList } = usePokeList();
 
-  if (Object.keys(pokeList).length === 0) return null;
+  if (!pokeList || Object.keys(pokeList).length === 0) return null;
 
   const sliderSettings: Settings = {
     dots: false,

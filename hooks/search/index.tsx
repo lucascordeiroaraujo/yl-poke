@@ -19,7 +19,7 @@ export const getSearchData = async (term: string) =>
     .get<IRequestProps>(`/pokemon/?limit=200}`)
     .then(async response => {
       const pokemons = response.data.results.filter(pokemon =>
-        pokemon.name.includes(term),
+        pokemon.name.includes(term.toLocaleLowerCase()),
       );
 
       const pokeList = [] as IPokeInfoRequest[];

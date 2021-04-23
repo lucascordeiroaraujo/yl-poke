@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { IPokeInfoRequest } from '~/utils/poke-list';
 
 export interface IFavoritesContextData {
-  favoritesStorage: IFavoriteState[];
+  favoritesStorage: any;
   handleToggleFavoritesStorage(pokemonId: number): void;
 
   favoritesData: IPokeInfoRequest[];

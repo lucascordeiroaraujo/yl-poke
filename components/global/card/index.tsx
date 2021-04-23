@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { IPokeInfoRequest } from '~/hooks/home/poke-list/types';
+import { IPokeInfoRequest } from '~/utils/poke-list';
 
 import { statName } from '~/utils/poke-list';
 

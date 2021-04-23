@@ -1,19 +1,12 @@
 import React from 'react';
 
-import { IPokeInfoRequest } from '~/hooks/home/poke-list/types';
+import { IPokeInfoRequest } from '~/utils/poke-list';
 
 import { statName } from '~/utils/poke-list';
 
 import Slide, { SliderItemInfo } from './style';
 
-import {
-  FaStar,
-  FaHotjar,
-  FaCircle,
-  FaFlask,
-  FaGem,
-  FaInfinity,
-} from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 
 import FavoriteButton from '~/components/global/favorite-button';
 

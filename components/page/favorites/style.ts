@@ -1,10 +1,12 @@
 import styled, { css } from 'styled-components';
 
 export default styled.section`
-  margin-top: 50px;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  width: 100%;
+  max-width: 1260px;
+  margin: 50px auto 0px auto;
   > h1 {
     font-size: 32px;
     font-weight: 900;

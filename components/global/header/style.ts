@@ -46,17 +46,6 @@ export const Menu = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  .switch-theme {
-    display: none !important;
-    .react-switch-bg div {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      svg {
-        font-size: 14px;
-      }
-    }
-  }
   ul {
     list-style: none;
     display: flex;

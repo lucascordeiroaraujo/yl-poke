@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { AppProps } from 'next/app';
 
@@ -8,19 +8,27 @@ import Router from 'next/router';
 
 import 'react-app-polyfill/ie9';
 
-import GlobalStyles, { AppBox } from '~/styles/global';
+import GlobalStyles, {
+  AppBox,
+  Container,
+  SwitchThemeContainer,
+} from '~/styles/global';
 
 import NProgress from 'nprogress';
 
 import { ThemeProvider } from 'styled-components';
 
-// import lightTheme from '~/styles/themes/light';
+import lightTheme from '~/styles/themes/light';
 
 import darkTheme from '~/styles/themes/dark';
 
 import { CookiesProvider } from 'react-cookie';
 
 import AppProvider from '~/hooks';
+
+import { FaMoon, FaSun } from 'react-icons/fa';
+
+import Switch from 'react-switch';
 
 import Header from '~/components/global/header';
 
@@ -32,7 +40,40 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 
 Router.events.on('routeChangeError', () => NProgress.done());
 
+type availableThemes = 'dark' | 'light';
+
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const [theme, setTheme] = useState<availableThemes>('dark');
+
+  const themeColors = {
+    light: {
+      ...lightTheme.colors,
+    },
+    dark: {
+      ...darkTheme.colors,
+    },
+  };
+
+  const localStorageTheme = '@yaloFront:theme';
+
+  const handleToggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+
+    localStorage.setItem(localStorageTheme, newTheme);
+
+    setTheme(newTheme);
+  };
+
+  useEffect(function () {
+    const selectedTheme = localStorage.getItem(
+      localStorageTheme,
+    ) as availableThemes;
+
+    if (selectedTheme) {
+      setTheme(selectedTheme);
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -159,13 +200,26 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
 
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
         <>
           <GlobalStyles />
 
           <AppBox>
             <CookiesProvider>
               <AppProvider>
+                <SwitchThemeContainer>
+                  <Container className="center-container">
+                    <Switch
+                      onChange={handleToggleTheme}
+                      checked={theme === 'dark'}
+                      checkedIcon={<FaMoon />}
+                      uncheckedIcon={<FaSun />}
+                      onColor={themeColors[theme].primary}
+                      className="switch-theme"
+                    />
+                  </Container>
+                </SwitchThemeContainer>
+
                 <Header />
 
                 <Component {...pageProps} theme={'dark'} />

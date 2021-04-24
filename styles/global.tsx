@@ -119,3 +119,26 @@ export const AppBox = styled.div`
   margin: 0px auto;
   overflow: hidden;
 `;
+
+export const SwitchThemeContainer = styled.div`
+  position: absolute;
+  z-index: 10;
+  top: 20px;
+  left: 0px;
+  width: 100%;
+  .center-container {
+    display: flex;
+    justify-content: flex-end;
+    .switch-theme {
+      display: flex;
+      .react-switch-bg div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+`;

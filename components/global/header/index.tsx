@@ -8,18 +8,10 @@ import { Container } from '~/styles/global';
 
 import { FaSearch } from 'react-icons/fa';
 
-import { FaHome, FaStar, FaMoon, FaSun } from 'react-icons/fa';
-
-import Switch from 'react-switch';
+import { FaHome, FaStar } from 'react-icons/fa';
 
 const header = () => {
   const [search, setSearch] = useState('');
-
-  const [checked, setChecked] = useState(false);
-
-  const handleChange = (): void => {
-    setChecked(!checked);
-  };
 
   const router = useRouter();
 
@@ -73,15 +65,6 @@ const header = () => {
                 </a>
               </MenuItem>
             </ul>
-
-            <Switch
-              onChange={handleChange}
-              checked={checked}
-              checkedIcon={<FaMoon />}
-              uncheckedIcon={<FaSun />}
-              onColor="#5a55f2"
-              className="switch-theme"
-            />
           </Menu>
 
           <SearchForm method="post" onSubmit={handleSubmitForm}>
